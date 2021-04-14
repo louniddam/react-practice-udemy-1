@@ -3,19 +3,20 @@ import './ExpenseForm.css'
 
 const ExpenseForm = (props) => {
 
-    // const [title, setTitle] = useState('')
-    // const [amount, setAmount] = useState('')
+    const [title, setTitle] = useState('')
+    const [amount, setAmount] = useState('')
     const [date, setDate] = useState('')
 
         //Ou un seul state
 
-    const [userInput, setUserInput] = useState({
-        title: '',
-        amount: ''
-    })
+    // const [userInput, setUserInput] = useState({
+    //     title: '',
+    //     amount: '',
+    //     date: ''
+    // })
 
     const titleChangeHandler = (e) => {
-        // setTitle(e.target.value)
+        setTitle(e.target.value)
 
             //On pourait faire comme ça mais on peut recontrer des erreurs quand on travail avec le previous state
 
@@ -26,28 +27,28 @@ const ExpenseForm = (props) => {
 
             //Du coup on utilise une fonction dans la fonction qui update le state
         
-        setUserInput((previousState) => {
-            return {
-                ...previousState,
-                title: e.target.value
-            }
-        })
+        // setUserInput((previousState) => {
+        //     return {
+        //         ...previousState,
+        //         title: e.target.value
+        //     }
+        // })
     }
 
     const amountChangeHandler = (e) => {
-        // setAmount(e.target.value)
+        setAmount(e.target.value)
 
         // setUserInput({
         //     ...userInput,
         //     amount: e.target.value
         // })
 
-        setUserInput((previousState) => {
-            return {
-                ...previousState,
-                amount: e.target.value
-            }
-        })
+        // setUserInput((previousState) => {
+        //     return {
+        //         ...previousState,
+        //         amount: e.target.value
+        //     }
+        // })
     }
 
     const dateChangeHandler = (e) => {
@@ -68,12 +69,10 @@ const ExpenseForm = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        const formValues = {userInput, date: new Date(date)}
+        const formValues = {title: title, amount: amount, date: new Date(date)}
         props.onSaveExpenseData(formValues)
-        setUserInput({
-            title: '',
-            amount: '',
-        })
+        setTitle('')
+        setAmount('')
         setDate('')
 
     }
@@ -83,11 +82,11 @@ const ExpenseForm = (props) => {
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
-                    <input type="texte" value={userInput.title} onChange={titleChangeHandler} />
+                    <input type="texte" value={title} onChange={titleChangeHandler} />
                 </div>
                 <div className="new-expense__control">
                     <label>Amount</label>
-                    <input type="number" min="0.01" step="0.01" value={userInput.amount} onChange={amountChangeHandler} />
+                    <input type="number" min="0.01" step="0.01" value={amount} onChange={amountChangeHandler} />
                 </div>
                 <div className="new-expense__control">
                     <label>Date</label>
