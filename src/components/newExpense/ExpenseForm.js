@@ -6,6 +6,7 @@ const ExpenseForm = (props) => {
     const [title, setTitle] = useState('')
     const [amount, setAmount] = useState('')
     const [date, setDate] = useState('')
+    const [toggle, setToggle] = useState(0)
 
         //Ou un seul state
 
@@ -74,7 +75,17 @@ const ExpenseForm = (props) => {
         setTitle('')
         setAmount('')
         setDate('')
+    }
 
+    if(toggle === 0) {
+        return <button onClick={() => setToggle(1)}>Add Expense</button>
+    }
+
+    const test = () => {
+        setTimeout(() => {
+            console.log('to');
+            setToggle(0)
+        }, 1000);
     }
 
     return(
@@ -94,7 +105,8 @@ const ExpenseForm = (props) => {
                 </div>
             </div>
             <div className="new-expense__actions">
-                <button type="submit">Add Expense</button>
+                <button type="submit" onClick={() => setToggle(0)}>Cancel</button>
+                <button type="submit" onClick={test}>Add Expense</button>
             </div>
         </form>
     )
